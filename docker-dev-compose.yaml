@@ -1,0 +1,13 @@
+version: "3"
+services:
+  deployment:
+    build:
+      dockerfile: Dockerfile.dev
+      context: .
+    ports:
+      - "80:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment: #any environment variables to specify
+      - WATCHPACK_POLLING=true #for react-app above webpack 5
