@@ -2,7 +2,7 @@ name: Deploy React to Aws
 on:
   push:
     branches:
-      - "master"
+      - "master" # Start the pipeline only when changes occur on master branch
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -10,16 +10,16 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v2
 
-      - name: Generate deployment package
+      - name: Generate deployment package # Create a zip file for deployment
         run: zip -r deploy.zip . -x '*.git*'
 
       - name: Deploy to EB
         uses: einaregilsson/beanstalk-deploy@v21
         with:
-          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          application_name: testing app
-          environment_name: Testingapp-env
-          version_label: ${{ github.sha }}
-          region: ap-south-1
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }} # Access Key from the AWS
+          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }} # Secret Access Key from AWS
+          application_name: testing app # Name of the app
+          environment_name: Testingapp-env # Environment name of the app
+          version_label: ${{ github.sha }} # Label to know the difference between various deployments
+          region: ap-south-1 # Region
           deployment_package: deploy.zip
