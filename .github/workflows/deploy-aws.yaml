@@ -18,8 +18,8 @@ jobs:
         with:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }} # Access Key from the AWS
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }} # Secret Access Key from AWS
-          application_name: testing app # Name of the app
-          environment_name: Testingapp-env # Environment name of the app
+          application_name: Testing Single Container # Name of the app
+          environment_name: TestingSingleContainer-env # Environment name of the app
           version_label: ${{ github.sha }} # Label to know the difference between various deployments
           region: ap-south-1 # Region
           deployment_package: deploy.zip
